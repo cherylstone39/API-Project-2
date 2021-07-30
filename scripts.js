@@ -11,6 +11,7 @@ const button= document.querySelector('button');
 const start= document.getElementById('start');
 
 
+
 let allHolidays;
 
 
@@ -19,18 +20,18 @@ function fetchResults(e) {
     // e.preventDefault();
     url = baseUrl + api_key + key;
     console.log("URL:", url);
+    fetch(url)
+    .then(function (result) {
+       console.log(result)
+      return result.json();
+    })
+    .then(function (json) {
+      console.log(json);
+      displayCalendar(json)
+    })
 }
- fetchResults()
+//  fetchResults()
 
- fetch(url)
- .then(function (result) {
-    console.log(result)
-   return result.json();
- })
- .then(function (json) {
-   console.log(json);
-   displayCalendar(json)
- })
 // console.log("this is a test");
 
 function displayCalendar(holiday) {
@@ -41,39 +42,38 @@ function displayCalendar(holiday) {
     
     for(let i = 0; i < calDay.length; i++) {
         // console.log(calDay[i])
-        pushHol(calDay[i])
+        // pushHol(calDay[i])
         
 
-        let day = document.createElement('h3');
-        day.innerHTML = calDay[i].date.iso
-        let eventHol = document.createElement('p');
-        eventHol.innerHTML = calDay[i].description
-        let holName = document.createElement('h1');
-        holName.innerHTML = calDay[i].name
+        // let day = document.createElement('h3');
+        // day.innerHTML = calDay[i].date.iso
+        // let eventHol = document.createElement('p');
+        // eventHol.innerHTML = calDay[i].description
+        // let holName = document.createElement('h1');
+        // holName.innerHTML = calDay[i].name
 
-        holName.appendChild(day);
-        holName.appendChild(eventHol);
-        nameDay.appendChild(holName);
-
-        function pushHol() {
-           let getHolDate = calDay[i].date.iso + calDay[i].description + calDay[i].name;
-           console.log(getHolDate)
-
-           let holDisplay = document.createElement('h2');
-           holDisplay.innerHTML = getHolDate           
-           nameDes.appendChild(holDisplay);
-
-          let startValue = calDay[i].date.iso
-          if (startValue !== "") {
-            console.log(startValue)
-            holStartValue = 
+        // holName.appendChild(day);
+        // holName.appendChild(eventHol);
+        // nameDay.appendChild(holName);
+    
+        
+        let startValue = calDay[i].date.iso
+        console.log("start", start, "startValue", startValue)
+        if (startValue === start.value) {
+          let getHolDate = calDay[i].description + calDay[i].name;
+          console.log(getHolDate)
+          let holDisplay = document.createElement('h2');
+          holDisplay.innerHTML = getHolDate           
+          nameDes.appendChild(holDisplay);
+          } else {
+            console.log('Nothing')
           }
-
+     }
             
-            }
-       }
-
-       button.addEventListener('click', pushHol); 
     }
   
+
+     
+      
+      button.addEventListener('click', fetchResults); 
       
