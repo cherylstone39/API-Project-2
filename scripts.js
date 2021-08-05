@@ -9,10 +9,10 @@ const nameDay= document.getElementById('dayName');
 const nameDes= document.getElementById('eventDate');
 const button= document.querySelector('button');
 const start= document.getElementById('start');
+let allHolidays= document.querySelector('holidayContainer');
 
 
 
-let allHolidays;
 
 
 
@@ -39,6 +39,8 @@ function displayCalendar(holiday) {
         // let allHolidays = holiday.response.holidays
         // console.log(allHolidays[currentDisplay]);
         console.log(calDay)
+
+   
     
     for(let i = 0; i < calDay.length; i++) {
         // console.log(calDay[i])
@@ -62,6 +64,10 @@ function displayCalendar(holiday) {
         if (startValue === start.value) {
           let getHolDate = calDay[i].description + calDay[i].name;
           console.log(getHolDate)
+          let holName = calDay[i].name;
+          let holidayName = document.createElement('h3');
+          holidayName.innerHTML = holName
+          nameDay.appendChild(holidayName);
           let holDisplay = document.createElement('h2');
           holDisplay.innerHTML = getHolDate           
           nameDes.appendChild(holDisplay);
