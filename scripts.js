@@ -40,6 +40,14 @@ function displayCalendar(holiday) {
         // console.log(allHolidays[currentDisplay]);
         console.log(calDay)
 
+        // while (nameDay.firstChild) {
+        //   nameDay.removeChild(nameDay.firstChild);
+        // }
+
+        while(nameDes.firstChild) {
+          nameDes.removeChild(nameDes.firstChild);
+        }
+
    
     
     for(let i = 0; i < calDay.length; i++) {
